@@ -16,6 +16,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -71,6 +72,14 @@ def _get_creds():
         sys.exit(1)
 
     return client_id, client_secret, refresh_token
+
+
+def _get_openai_key():
+    """Return OPENAI_API_KEY from env or .env file. Returns None if not set."""
+    key = os.environ.get("OPENAI_API_KEY")
+    if not key:
+        key = _load_env().get("OPENAI_API_KEY")
+    return key
 
 
 # ── OAuth ─────────────────────────────────────────────────────────────────────
@@ -309,7 +318,170 @@ def build_priorities_html(p1, p2, p3):
     return html
 
 
-def build_html(date_str, schedule_str, items_str, p1, p2, p3, needle, cal_note):
+# ── News digest ───────────────────────────────────────────────────────────────
+
+NEWS_SOURCES = {
+    "AI & Tech": [
+        "https://techcrunch.com/feed/",
+        "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+    ],
+    "Markets & Trading": [
+        "https://feeds.reuters.com/reuters/businessNews",
+    ],
+    "Vietnam Business": [
+        "https://e.vnexpress.net/rss/business.rss",
+    ],
+}
+
+
+def fetch_rss(url, max_items=5):
+    """Fetch and parse an RSS 2.0 feed. Returns [] silently on any error."""
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "AIOS-MorningBrew/1.0"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            xml_data = r.read()
+        root = ET.fromstring(xml_data)
+        items = []
+        for item in root.findall(".//item")[:max_items]:
+            title = (item.findtext("title") or "").strip()
+            link  = (item.findtext("link")  or "").strip()
+            desc  = re.sub(r"<[^>]+>", "", (item.findtext("description") or ""))[:200].strip()
+            if title:
+                items.append({"title": title, "link": link, "description": desc})
+        return items
+    except Exception as e:
+        print(f"  WARNING: RSS fetch failed for {url}: {e}", file=sys.stderr)
+        return []
+
+
+def fetch_all_news(max_per_category=5):
+    results = {}
+    for category, urls in NEWS_SOURCES.items():
+        items = []
+        for url in urls:
+            items.extend(fetch_rss(url, max_items=max_per_category))
+            if len(items) >= max_per_category:
+                break
+        results[category] = items[:max_per_category]
+    return results
+
+
+def summarize_with_openai(headlines, category, api_key):
+    """Call OpenAI gpt-4o-mini to produce 2-3 bullet points. Returns None on failure."""
+    if not api_key or not headlines:
+        return None
+    headlines_text = "\n".join(f"- {h['title']}" for h in headlines)
+    prompt = (
+        f"You are Austin's briefing assistant. Here are today's {category} headlines:\n\n"
+        f"{headlines_text}\n\n"
+        "Write 2-3 tight bullet points — one sentence each — on what matters most for "
+        "an AI OS consultant and futures trader in Hanoi. No fluff. Start each bullet with •"
+    )
+    body = {
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 200,
+        "temperature": 0.3,
+    }
+    try:
+        data = json.dumps(body).encode()
+        req = urllib.request.Request(
+            "https://api.openai.com/v1/chat/completions",
+            data=data,
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=20) as r:
+            result = json.loads(r.read())
+            return result["choices"][0]["message"]["content"].strip()
+    except Exception as e:
+        print(f"  WARNING: OpenAI summarization failed for {category}: {e}", file=sys.stderr)
+        return None
+
+
+def build_news_digest(openai_key):
+    print("Fetching news digest...")
+    news = fetch_all_news()
+    digest = {}
+    for category, items in news.items():
+        print(f"  {category}: {len(items)} headline(s)")
+        summary = summarize_with_openai(items, category, openai_key)
+        digest[category] = {"items": items, "summary": summary}
+    return digest
+
+
+def build_news_html(digest):
+    """Render the news digest as an HTML email section. Returns '' if no items."""
+    if not digest or all(not v["items"] for v in digest.values()):
+        return ""
+
+    category_blocks = ""
+    for category, data in digest.items():
+        items   = data["items"]
+        summary = data.get("summary")
+        if not items:
+            continue
+
+        if summary:
+            bullets_html = ""
+            for line in summary.splitlines():
+                line = re.sub(r"^[•\-\*]\s*", "", line.strip())
+                if line:
+                    bullets_html += (
+                        f'<div style="display:flex;align-items:flex-start;margin-bottom:8px;">'
+                        f'<span style="color:#8b5cf6;margin-right:8px;font-size:14px;flex-shrink:0;">•</span>'
+                        f'<span style="color:#1a1a1a;font-size:14px;line-height:1.5;">{line}</span></div>'
+                    )
+        else:
+            bullets_html = ""
+            for item in items[:3]:
+                bullets_html += (
+                    f'<div style="display:flex;align-items:flex-start;margin-bottom:8px;">'
+                    f'<span style="color:#8b5cf6;margin-right:8px;font-size:14px;flex-shrink:0;">•</span>'
+                    f'<span style="color:#1a1a1a;font-size:14px;line-height:1.5;">{item["title"]}</span></div>'
+                )
+
+        category_blocks += (
+            f'<div style="margin-bottom:20px;">'
+            f'<p style="margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:2px;'
+            f'text-transform:uppercase;color:#666666;">{category}</p>'
+            f'{bullets_html}</div>'
+        )
+
+    return (
+        f'<tr><td style="background:#ffffff;padding:24px 32px 20px;">'
+        f'<p style="margin:0 0 14px;font-size:10px;font-weight:800;letter-spacing:3px;'
+        f'text-transform:uppercase;color:#8b5cf6;border-bottom:2px solid #8b5cf6;'
+        f'padding-bottom:10px;display:inline-block;">\U0001f4f0 &nbsp;AI Daily Digest</p>'
+        f'{category_blocks}</td></tr>'
+        f'<tr><td style="background:#ffffff;padding:0 32px;">'
+        f'<div style="height:1px;background:#eeeeee;"></div></td></tr>'
+    )
+
+
+def build_news_plain(digest):
+    """Render news digest as plain text. Returns '' if no items."""
+    if not digest or all(not v["items"] for v in digest.values()):
+        return ""
+    lines = ["\n\nAI DAILY DIGEST", "-" * 40]
+    for category, data in digest.items():
+        items   = data["items"]
+        summary = data.get("summary")
+        if not items:
+            continue
+        lines.append(f"\n{category.upper()}")
+        if summary:
+            lines.append(summary)
+        else:
+            for item in items[:3]:
+                lines.append(f"• {item['title']}")
+    return "\n".join(lines)
+
+
+def build_html(date_str, schedule_str, items_str, p1, p2, p3, needle, cal_note, news_html=""):
     schedule_html   = build_schedule_html(schedule_str)
     items_html      = build_items_html(items_str)
     priorities_html = build_priorities_html(p1, p2, p3)
@@ -379,6 +551,9 @@ def build_html(date_str, schedule_str, items_str, p1, p2, p3, needle, cal_note):
       </td>
     </tr>
 
+    <!-- AI DAILY DIGEST -->
+    {news_html}
+
     <!-- FOOTER -->
     <tr>
       <td style="background:#1a1a1a;border-radius:0 0 16px 16px;padding:20px 32px;text-align:center;">
@@ -433,6 +608,10 @@ def main():
 
     # 4. Load priorities
     priorities = load_priorities()
+
+    # 4b. Build news digest
+    openai_key = _get_openai_key()
+    digest = build_news_digest(openai_key)
 
     # 5. Fetch today's calendar events
     today = today_bangkok()
@@ -498,6 +677,7 @@ def main():
         p3           = p3,
         needle       = needle,
         cal_note     = cal_note,
+        news_html    = build_news_html(digest),
     )
 
     plain = f"""Morning Brew — {date_str}
@@ -515,6 +695,7 @@ TOP 3 PRIORITIES
 
 ONE THING TO MOVE THE NEEDLE
 → {needle}
+{build_news_plain(digest)}
 
 ---
 {cal_note}"""

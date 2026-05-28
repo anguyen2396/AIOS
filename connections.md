@@ -13,6 +13,7 @@ Registry of every system Austin's AIOS can reach. `/audit` checks this file for 
 | 6 | Meeting intelligence | None yet (no recording tool) | not yet connected | — | — |
 | 7 | Knowledge / files | Obsidian (notes) | direct file read (`C:\Users\Administrator\Desktop\austin-brain`) | none needed | 2026-05-28 |
 | 8 | Knowledge / files | Google Drive (docs) | mcp (`claude.ai Google Drive`) | OAuth | 2026-05-28 |
+| 9 | News / research | RSS feeds (TechCrunch, The Verge AI, Reuters, VnExpress) + OpenAI gpt-4o-mini summarization | script (`scripts/morning_brew_cloud.py`) | `OPENAI_API_KEY` GitHub secret | 2026-05-28 |
 
 **Mechanism options:** `mcp` (MCP server), `script` (Python/Bash hitting an API, in `scripts/`), `export` (CSV/JSON dump pipeline), `key+ref` (`.env` key + `references/{tool}-api.md` guide), `not yet connected`.
 
