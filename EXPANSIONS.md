@@ -73,5 +73,3 @@ Ask three questions:
 Two yeses = add. One yes = wait.
 
 ---
-
-> *Your AIOS structure should look like a small, well-run business — not a hoarder's basement. When you can't find something, that's a signal to consolidate, not to add another folder.*
