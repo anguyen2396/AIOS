@@ -80,15 +80,19 @@ Output the brief in this exact format:
 ## One Thing to Move the Needle
 → [single most important action today — be specific, not generic]
 
+## 📰 AI Daily Digest
+(fetched automatically when email is sent — see Step 7)
+
 ---
 🗓 [N] new events added to calendar. [M] items already scheduled.
 ```
 
 ---
 
-### Step 7 — Send the HTML brief email
+### Step 7 — Send the HTML brief email (with AI Daily Digest)
 
-After outputting the brief in chat, run `scripts/send_morning_brew.py` with the brief data:
+After outputting the brief in chat, run `scripts/send_morning_brew.py` with the brief data.
+The script **automatically fetches the AI Daily Digest** (RSS feeds + OpenAI summary) and appends it to the email — no extra args needed. It reads `OPENAI_API_KEY` from the environment or `.env` file.
 
 ```
 python scripts/send_morning_brew.py \
@@ -102,7 +106,7 @@ python scripts/send_morning_brew.py \
   --cal-note "[N new events added. M items already scheduled.]"
 ```
 
-The script generates a styled HTML email (dark header, colored section labels, green needle-mover callout) and sends directly to austinngg996@gmail.com via Gmail API.
+The email will contain all 5 sections: Schedule, Action Items, Top 3 Priorities, Needle Mover, and AI Daily Digest (AI & Tech / Markets & Trading / Vietnam Business).
 
 Log one line after sending: `Email sent — Message ID: [id]`
 
