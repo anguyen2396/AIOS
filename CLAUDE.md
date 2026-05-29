@@ -13,7 +13,7 @@ Read `references/3ms-framework.md` once. It's how Austin thinks about AI work. M
 - `/onboard` — already run. Re-run any time to refresh from an edited `aios-intake.md`.
 - `/audit` — Four-Cs gap report. Run on Day 7, then weekly. Watch the score climb.
 - `/level-up` — Weekly 3Ms interview. Find one automation, scope it, ship it. One per week.
-- `/morning-brew` — Daily ritual. Syncs Obsidian `[ ]` action items to Google Calendar, then outputs a prioritized daily brief (schedule + open items + top 3 + one needle-mover).
+- `/morning-brew` — Daily ritual (also runs automatically at 7 AM Hanoi via GitHub Actions). Two parts in one email: **Your Day** (Obsidian `[ ]` sync to Google Calendar + prioritized brief: schedule, open items, top 3, needle-mover) and **AI World** (AI news headlines, YouTube channel updates with transcript summaries from Nate Herk / Tina Huang / Greg Isenberg / Matthew Berman, Claude/Anthropic updates, new AI tool drops).
 
 ## Where things live
 
@@ -34,7 +34,7 @@ Q2/Q3 2026 priorities:
 2. Build the sales funnel/pitch framework for the 4-rung AI OS offer.
 3. Land first client, or at minimum run a full prospect through the funnel.
 
-Top automation pain: Obsidian action items don't automatically sync to Google Calendar. Everything is manual. This is the Day-2 connection to wire.
+Top automation pain: ~~Obsidian→Google Calendar sync~~ — **done**. Morning brew auto-syncs daily at 7 AM. Next gap: no live TopStep connection for trading accountability.
 
 ## Voice
 

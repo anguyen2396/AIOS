@@ -1,0 +1,676 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "title-bg",
+      "type": "rectangle",
+      "x": 30, "y": 30, "width": 1540, "height": 80,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "dashed",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "title-main",
+      "type": "text",
+      "x": 30, "y": 45, "width": 1540, "height": 35,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "AI CONSULTING  ·  Your AI Operating System",
+      "fontSize": 28, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "AI CONSULTING  ·  Your AI Operating System", "lineHeight": 1.25
+    },
+    {
+      "id": "title-sub",
+      "type": "text",
+      "x": 30, "y": 83, "width": 1540, "height": 18,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Austin Nguyen  |  AI OS Consultant",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "Austin Nguyen  |  AI OS Consultant", "lineHeight": 1.25
+    },
+
+    {
+      "id": "prob-bg",
+      "type": "rectangle",
+      "x": 30, "y": 150, "width": 340, "height": 570,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "dashed",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "prob-hdr",
+      "type": "text",
+      "x": 30, "y": 162, "width": 340, "height": 28,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "THE PROBLEM",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "THE PROBLEM", "lineHeight": 1.25
+    },
+    {
+      "id": "prob-callout",
+      "type": "text",
+      "x": 50, "y": 200, "width": 300, "height": 40,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "You're the bottleneck\nin your own business.",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "You're the bottleneck\nin your own business.", "lineHeight": 1.25
+    },
+    {
+      "id": "prob-c1",
+      "type": "rectangle",
+      "x": 50, "y": 255, "width": 300, "height": 75,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "prob-c1-txt",
+      "type": "text",
+      "x": 50, "y": 271, "width": 300, "height": 40,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "→  Hours spent on\n     repetitive tasks",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "→  Hours spent on\n     repetitive tasks", "lineHeight": 1.25
+    },
+    {
+      "id": "prob-c2",
+      "type": "rectangle",
+      "x": 50, "y": 345, "width": 300, "height": 75,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "prob-c2-txt",
+      "type": "text",
+      "x": 50, "y": 361, "width": 300, "height": 40,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "→  Knowledge locked in\n     your head, not systems",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "→  Knowledge locked in\n     your head, not systems", "lineHeight": 1.25
+    },
+    {
+      "id": "prob-c3",
+      "type": "rectangle",
+      "x": 50, "y": 435, "width": 300, "height": 75,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "prob-c3-txt",
+      "type": "text",
+      "x": 50, "y": 451, "width": 300, "height": 40,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "→  Growth bottlenecked\n     by manual processes",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "→  Growth bottlenecked\n     by manual processes", "lineHeight": 1.25
+    },
+    {
+      "id": "prob-note",
+      "type": "rectangle",
+      "x": 50, "y": 530, "width": 300, "height": 60,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffc9c9",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "prob-note-txt",
+      "type": "text",
+      "x": 50, "y": 542, "width": 300, "height": 35,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "PREP: Fill 3 pains from discovery\nbefore presenting",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "PREP: Fill 3 pains from discovery\nbefore presenting", "lineHeight": 1.25
+    },
+
+    {
+      "id": "arr-ps",
+      "type": "arrow",
+      "x": 375, "y": 435, "width": 30, "height": 0,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1.5, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 2}, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "points": [[0, 0], [30, 0]],
+      "lastCommittedPoint": null, "startBinding": null, "endBinding": null,
+      "startArrowhead": null, "endArrowhead": "arrow"
+    },
+
+    {
+      "id": "sol-bg",
+      "type": "rectangle",
+      "x": 410, "y": 150, "width": 440, "height": 570,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "dashed",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "sol-hdr",
+      "type": "text",
+      "x": 410, "y": 162, "width": 440, "height": 28,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "THE SOLUTION",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "THE SOLUTION", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-sub",
+      "type": "text",
+      "x": 430, "y": 200, "width": 400, "height": 40,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "AI that knows your business\nand works while you don't.",
+      "fontSize": 15, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "AI that knows your business\nand works while you don't.", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-c1",
+      "type": "rectangle",
+      "x": 430, "y": 252, "width": 400, "height": 90,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "sol-c1-hdr",
+      "type": "text",
+      "x": 430, "y": 262, "width": 400, "height": 20,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "EXPERTISE EXTRACTION",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "EXPERTISE EXTRACTION", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-c1-desc",
+      "type": "text",
+      "x": 430, "y": 285, "width": 400, "height": 40,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Turn knowledge into AI workflows.\nRuns the way you would — without you.",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "Turn knowledge into AI workflows.\nRuns the way you would — without you.", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-c2",
+      "type": "rectangle",
+      "x": 430, "y": 357, "width": 400, "height": 90,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "sol-c2-hdr",
+      "type": "text",
+      "x": 430, "y": 367, "width": 400, "height": 20,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "CONNECTED WORKFLOWS",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "CONNECTED WORKFLOWS", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-c2-desc",
+      "type": "text",
+      "x": 430, "y": 390, "width": 400, "height": 40,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Email, calendar, docs move data automatically.\nNo more copy-paste between tools.",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "Email, calendar, docs move data automatically.\nNo more copy-paste between tools.", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-c3",
+      "type": "rectangle",
+      "x": 430, "y": 462, "width": 400, "height": 90,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "sol-c3-hdr",
+      "type": "text",
+      "x": 430, "y": 472, "width": 400, "height": 20,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "BOTTLENECK REMOVAL",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "BOTTLENECK REMOVAL", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-c3-desc",
+      "type": "text",
+      "x": 430, "y": 495, "width": 400, "height": 40,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Find 3–5 tasks only you handle today.\nBuild systems that run them on autopilot.",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "Find 3–5 tasks only you handle today.\nBuild systems that run them on autopilot.", "lineHeight": 1.25
+    },
+    {
+      "id": "sol-metrics",
+      "type": "rectangle",
+      "x": 430, "y": 567, "width": 400, "height": 55,
+      "angle": 0, "strokeColor": "#e03131", "backgroundColor": "#ffc9c9",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "sol-metrics-txt",
+      "type": "text",
+      "x": 430, "y": 577, "width": 400, "height": 35,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "6+ hrs/week returned  ·  Response: hours → minutes\nRamp time cut 30–50%",
+      "fontSize": 12, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "6+ hrs/week returned  ·  Response: hours → minutes\nRamp time cut 30–50%", "lineHeight": 1.25
+    },
+
+    {
+      "id": "arr-sr",
+      "type": "arrow",
+      "x": 855, "y": 435, "width": 30, "height": 0,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1.5, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 2}, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "points": [[0, 0], [30, 0]],
+      "lastCommittedPoint": null, "startBinding": null, "endBinding": null,
+      "startArrowhead": null, "endArrowhead": "arrow"
+    },
+
+    {
+      "id": "road-bg",
+      "type": "rectangle",
+      "x": 890, "y": 150, "width": 680, "height": 570,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "dashed",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "road-hdr",
+      "type": "text",
+      "x": 890, "y": 162, "width": 680, "height": 28,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "THE ROADMAP",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "THE ROADMAP", "lineHeight": 1.25
+    },
+    {
+      "id": "road-sub",
+      "type": "text",
+      "x": 910, "y": 200, "width": 640, "height": 18,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Four rungs. Start small. Scale what works.",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "Four rungs. Start small. Scale what works.", "lineHeight": 1.25
+    },
+
+    {
+      "id": "rung0-bg",
+      "type": "rectangle",
+      "x": 910, "y": 228, "width": 640, "height": 112,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "rung0-label",
+      "type": "text",
+      "x": 912, "y": 255, "width": 90, "height": 55,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "RUNG 0",
+      "fontSize": 18, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "containerId": null, "originalText": "RUNG 0", "lineHeight": 1.25
+    },
+    {
+      "id": "rung0-name",
+      "type": "text",
+      "x": 1015, "y": 238, "width": 200, "height": 22,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Discovery Hour",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Discovery Hour", "lineHeight": 1.25
+    },
+    {
+      "id": "rung0-price",
+      "type": "text",
+      "x": 1015, "y": 264, "width": 120, "height": 18,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "$50–$500",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "$50–$500", "lineHeight": 1.25
+    },
+    {
+      "id": "rung0-desc",
+      "type": "text",
+      "x": 1150, "y": 238, "width": 390, "height": 90,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "60-min paid session. Set up your AIOS together.\nYou leave with a working system that\nknows your business.",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "60-min paid session. Set up your AIOS together.\nYou leave with a working system that\nknows your business.", "lineHeight": 1.25
+    },
+
+    {
+      "id": "rung1-bg",
+      "type": "rectangle",
+      "x": 910, "y": 350, "width": 640, "height": 112,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "rung1-label",
+      "type": "text",
+      "x": 912, "y": 377, "width": 90, "height": 55,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "RUNG 1",
+      "fontSize": 18, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "containerId": null, "originalText": "RUNG 1", "lineHeight": 1.25
+    },
+    {
+      "id": "rung1-name",
+      "type": "text",
+      "x": 1015, "y": 360, "width": 200, "height": 22,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Deep Audit",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Deep Audit", "lineHeight": 1.25
+    },
+    {
+      "id": "rung1-price",
+      "type": "text",
+      "x": 1015, "y": 386, "width": 120, "height": 18,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Quoted",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Quoted", "lineHeight": 1.25
+    },
+    {
+      "id": "rung1-desc",
+      "type": "text",
+      "x": 1150, "y": 360, "width": 390, "height": 90,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "We map every workflow. Find the top automation\nopportunities. Written build plan with\nROI estimates.",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "We map every workflow. Find the top automation\nopportunities. Written build plan with\nROI estimates.", "lineHeight": 1.25
+    },
+
+    {
+      "id": "rung2-bg",
+      "type": "rectangle",
+      "x": 910, "y": 472, "width": 640, "height": 112,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "rung2-label",
+      "type": "text",
+      "x": 912, "y": 499, "width": 90, "height": 55,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "RUNG 2",
+      "fontSize": 18, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "containerId": null, "originalText": "RUNG 2", "lineHeight": 1.25
+    },
+    {
+      "id": "rung2-name",
+      "type": "text",
+      "x": 1015, "y": 482, "width": 200, "height": 22,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Build Project",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Build Project", "lineHeight": 1.25
+    },
+    {
+      "id": "rung2-price",
+      "type": "text",
+      "x": 1015, "y": 508, "width": 120, "height": 18,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Quoted",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Quoted", "lineHeight": 1.25
+    },
+    {
+      "id": "rung2-desc",
+      "type": "text",
+      "x": 1150, "y": 482, "width": 390, "height": 90,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Ship one end-to-end workflow with measurable ROI.\nAudit fee credited against project cost.",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Ship one end-to-end workflow with measurable ROI.\nAudit fee credited against project cost.", "lineHeight": 1.25
+    },
+
+    {
+      "id": "rung3-bg",
+      "type": "rectangle",
+      "x": 910, "y": 594, "width": 640, "height": 112,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "rung3-label",
+      "type": "text",
+      "x": 912, "y": 621, "width": 90, "height": 55,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "RUNG 3",
+      "fontSize": 18, "fontFamily": 1, "textAlign": "center", "verticalAlign": "middle",
+      "containerId": null, "originalText": "RUNG 3", "lineHeight": 1.25
+    },
+    {
+      "id": "rung3-name",
+      "type": "text",
+      "x": 1015, "y": 604, "width": 200, "height": 22,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Ongoing Support",
+      "fontSize": 16, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Ongoing Support", "lineHeight": 1.25
+    },
+    {
+      "id": "rung3-price",
+      "type": "text",
+      "x": 1015, "y": 630, "width": 120, "height": 18,
+      "angle": 0, "strokeColor": "#2f9e44", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Retainer",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Retainer", "lineHeight": 1.25
+    },
+    {
+      "id": "rung3-desc",
+      "type": "text",
+      "x": 1150, "y": 604, "width": 390, "height": 90,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Continuous optimization, new workflow\nexpansion, and team training on your AIOS.",
+      "fontSize": 13, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Continuous optimization, new workflow\nexpansion, and team training on your AIOS.", "lineHeight": 1.25
+    },
+
+    {
+      "id": "next-bg",
+      "type": "rectangle",
+      "x": 30, "y": 760, "width": 1540, "height": 170,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "dashed",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "next-hdr",
+      "type": "text",
+      "x": 30, "y": 772, "width": 1540, "height": 28,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "NEXT STEP  ·  Start with one hour.",
+      "fontSize": 22, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "NEXT STEP  ·  Start with one hour.", "lineHeight": 1.25
+    },
+    {
+      "id": "next-checklist",
+      "type": "text",
+      "x": 180, "y": 812, "width": 560, "height": 90,
+      "angle": 0, "strokeColor": "#343a40", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "✓  Your current workflows mapped\n✓  3 quick wins identified\n✓  A clear build plan if we proceed",
+      "fontSize": 14, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "✓  Your current workflows mapped\n✓  3 quick wins identified\n✓  A clear build plan if we proceed", "lineHeight": 1.6
+    },
+    {
+      "id": "next-cta",
+      "type": "rectangle",
+      "x": 840, "y": 808, "width": 420, "height": 80,
+      "angle": 0, "strokeColor": "#1971c2", "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": {"type": 3}, "boundElements": [], "updated": 1, "link": null, "locked": false
+    },
+    {
+      "id": "next-cta-txt",
+      "type": "text",
+      "x": 840, "y": 833, "width": 420, "height": 25,
+      "angle": 0, "strokeColor": "#1e1e1e", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Book a free 20-min call →",
+      "fontSize": 18, "fontFamily": 1, "textAlign": "center", "verticalAlign": "top",
+      "containerId": null, "originalText": "Book a free 20-min call →", "lineHeight": 1.25
+    },
+    {
+      "id": "next-cta-sub",
+      "type": "text",
+      "x": 1300, "y": 818, "width": 250, "height": 60,
+      "angle": 0, "strokeColor": "#868e96", "backgroundColor": "transparent",
+      "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+      "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+      "roundness": null, "boundElements": [], "updated": 1, "link": null, "locked": false,
+      "text": "Add booking link\nAdd WhatsApp / Zalo\nSwap in their pain from slide 2",
+      "fontSize": 12, "fontFamily": 1, "textAlign": "left", "verticalAlign": "top",
+      "containerId": null, "originalText": "Add booking link\nAdd WhatsApp / Zalo\nSwap in their pain from slide 2", "lineHeight": 1.4
+    }
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}

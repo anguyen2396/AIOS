@@ -3,6 +3,22 @@ name: excalidraw-diagram
 description: Use when someone asks to draw a diagram, make an Excalidraw diagram, or build an editable diagram. Default for all diagram requests.
 ---
 
+## Style Reference
+
+Base all visual decisions on `references/system design.png`. Read that file before generating any diagram. The canonical style:
+
+- **Font:** Virgil (`fontFamily: 1`) — handwritten feel throughout. No Helvetica or Cascadia unless specifically a code label.
+- **Roughness:** `1` on all shapes. Gives the authentic Excalidraw sketch look.
+- **Roundness:** `{"type": 3}` on all rectangles (rounded corners). Sharp corners only for grid/matrix layouts.
+- **Stroke width:** `2` for shapes, `1.5` for arrows.
+- **Actor nodes:** Use `ellipse` (circle) for humans/clients/users, not rectangles.
+- **Context boxes:** Dashed border (`strokeStyle: "dashed"`), no fill or very light gray fill, for Task/Constraint/Legend boxes.
+- **Annotation stickies:** Pink/salmon background (`backgroundColor: "#ffc9c9"`, `strokeColor: "#e03131"`) for question callouts or design notes embedded in the diagram.
+- **Arrow labels:** Plain inline text elements (lowercase, `fontSize: 14`, `strokeColor: "#1e1e1e"`), not boxed. Position 15-20px above the arrow midpoint.
+- **Background:** White (`#ffffff`).
+
+---
+
 ## Workflow
 
 ### Step 1: Understand the request
@@ -111,32 +127,38 @@ Section C: x=450, w=600  -> right edge = 1050
 
 ## Color System
 
-| Zone | Use for | strokeColor | backgroundColor |
-|------|---------|-------------|-----------------|
-| Blue | Input, source, external services | `#1971c2` | `#e7f5ff` |
-| Yellow | Processing, transformation | `#f59f00` | `#fff9db` |
-| Green | Output, containers, success | `#2f9e44` | `#d3f9d8` |
-| Purple | Shared layers, infrastructure | `#862e9c` | `#f3d9fa` |
-| Red | Host OS, warnings, errors | `#c92a2a` | `#ffe3e3` |
-| Gray | Hardware, neutral containers | `#495057` | `#f8f9fa` |
+Derived from `references/system design.png`. Default palette — use this unless the user requests a specific color scheme:
 
-For nested elements, vary the fill intensity:
-- Outer: lightest (e.g., `#d3f9d8`)
-- Inner: medium (e.g., `#8ce99a`)
-- Deep inner: light-medium (e.g., `#b2f2bb`)
+| Role | strokeColor | backgroundColor |
+|------|-------------|-----------------|
+| Service / component (default) | `#1971c2` | `#a5d8ff` |
+| Actor / user (circle) | `#1971c2` | `#74c0fc` |
+| Storage / database | `#1971c2` | `#a5d8ff` |
+| Annotation sticky | `#e03131` | `#ffc9c9` |
+| Context / constraint box | `#868e96` | `transparent` (dashed border) |
+| Success / output highlight | `#2f9e44` | `#b2f2bb` |
+| Warning / error | `#c92a2a` | `#ffe3e3` |
+
+**Color discipline from the reference PNG:**
+- Don't assign colors by zone/layer. Assign by **node type** — services are all the same blue, only annotations and context boxes deviate.
+- If a diagram has multiple logical zones (e.g., frontend vs backend vs data), use subtle background rectangles with light fill and dashed borders to group them — not color changes on individual nodes.
+- Text on colored shapes: always `#1e1e1e` (near-black) or white if background is very dark.
 
 ---
 
 ## Typography Scale
 
+All text uses `fontFamily: 1` (Virgil) to match the handwritten style in `references/system design.png`. Cascadia only for inline code snippets.
+
 | Role | fontSize | fontFamily |
 |------|----------|------------|
-| Diagram title | 32-36 | 1 (Virgil) |
-| Section header | 20-24 | 1 |
-| Element label | 16-18 | 1 |
-| Annotation | 14-15 | 1 |
-| Small note | 12-13 | 1 |
-| Code label | 14-16 | 3 (Cascadia) |
+| Diagram title | 28-32 | 1 (Virgil) |
+| Node / component label | 20-24 | 1 |
+| Sub-label / service name | 14-16 | 1 |
+| Arrow label | 13-14 | 1 |
+| Annotation sticky text | 14-16 | 1 |
+| Context box header | 20-22 | 1 |
+| Context box body | 14-15 | 1 |
 
 Text width = parent box width. Text x/y offset ~8-10px from box x/y for padding.
 
@@ -198,11 +220,12 @@ Every element needs these base fields. Do not omit any.
 ```
 
 ### Key values
-- **fontFamily:** 1 = Virgil (handwritten, default), 2 = Helvetica, 3 = Cascadia (monospace)
-- **roughness:** 0 = smooth, 1 = slightly rough (default Excalidraw feel), 2 = very rough
-- **fillStyle:** `"solid"` for clean diagrams, `"hachure"` for classic Excalidraw hatching
-- **roundness:** `null` = sharp corners, `{"type": 3}` = rounded rectangles, `{"type": 2}` = curved arrows
-- **strokeStyle:** `"solid"`, `"dashed"` (optional connections), `"dotted"`
+- **fontFamily:** 1 = Virgil (handwritten, default — use this always), 2 = Helvetica, 3 = Cascadia (monospace, code only)
+- **roughness:** `1` always (matches the sketchy hand-drawn look in the reference PNG)
+- **fillStyle:** `"solid"` for all filled shapes
+- **roundness:** `{"type": 3}` for rectangles (default), `{"type": 2}` for curved arrows, `null` for sharp-corner context boxes
+- **strokeStyle:** `"solid"` for components, `"dashed"` for context/constraint boxes and optional/secondary connections
+- **strokeWidth:** `2` for shapes, `1.5` for arrows
 
 ---
 
