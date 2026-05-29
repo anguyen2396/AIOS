@@ -79,7 +79,7 @@ Run one WebSearch per channel:
 - `Greg Isenberg YouTube AI ideas [current month year]`
 - `Matthew Berman AI YouTube [current month year]`
 
-For each, extract the most recent 1–2 videos: Channel | Title | Date | URL (if available). YouTube lookback window: 14 days. No hallucinated URLs — omit if unsure.
+For each, extract the most recent 1–2 videos: Channel | Title | Date | URL | one-sentence description of what the video covers. YouTube lookback window: 14 days. No hallucinated URLs — omit URL field if unsure.
 
 ### Step 8 — Claude / Anthropic Updates
 

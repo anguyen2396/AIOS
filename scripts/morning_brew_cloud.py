@@ -266,8 +266,8 @@ def gather_ai_sections(openai_key: str, today_str: str) -> dict:
     channels = ", ".join(YOUTUBE_CHANNELS)
     youtube = openai_search(openai_key, (
         f"Find the most recent YouTube videos (last 14 days) from: {channels}. "
-        "For each video: channel name, title, upload date, URL. "
-        "Format: CHANNEL | TITLE | DATE | URL. One per line. Skip channels with no recent videos."
+        "For each video: channel name, title, upload date, URL, and a one-sentence description of what the video covers. "
+        "Format: CHANNEL | TITLE | DATE | URL | DESCRIPTION. One per line. Skip channels with no recent videos."
     ))
 
     print("  Fetching Anthropic/Claude updates...")
@@ -352,17 +352,20 @@ def build_youtube_html(yt_str):
         return '<p style="color:#888;font-style:italic;">No new videos found this week.</p>'
     html = ""
     for line in lines:
-        parts = line.split("|", 3)
+        parts = line.split("|", 4)
         channel = parts[0].strip() if parts else line
         title = parts[1].strip() if len(parts) > 1 else ""
         date = parts[2].strip() if len(parts) > 2 else ""
         url = parts[3].strip() if len(parts) > 3 else ""
-        title_html = f'<a href="{url}" style="color:#4a90d9;text-decoration:none;">{title}</a>' if url and title else title
+        desc = parts[4].strip() if len(parts) > 4 else ""
+        title_html = f'<a href="{url}" style="color:#4a90d9;font-weight:700;text-decoration:none;">{title}</a>' if url and title else f'<strong>{title}</strong>'
+        meta = f'{channel}{" · " + date if date else ""}'
         html += (
-            f'<div style="display:flex;align-items:flex-start;margin-bottom:10px;">'
-            f'<span style="min-width:22px;margin-right:8px;color:#ff0000;font-size:14px;">▶</span>'
-            f'<div><p style="margin:0 0 1px;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;">{channel}{f" · {date}" if date else ""}</p>'
-            f'<p style="margin:0;font-size:13px;color:#1a1a1a;">{title_html or line}</p></div></div>'
+            f'<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #f0f0f0;">'
+            f'<p style="margin:0 0 3px;font-size:14px;line-height:1.4;">{title_html or line}</p>'
+            f'<p style="margin:0 0 3px;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;">{meta}</p>'
+            + (f'<p style="margin:0;font-size:13px;color:#555;line-height:1.5;">{desc}</p>' if desc else "")
+            + '</div>'
         )
     return html
 
