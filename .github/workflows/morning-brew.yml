@@ -19,6 +19,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Python dependencies
+        run: pip install youtube-transcript-api
+
       - name: Run Morning Brew
         env:
           OPENAI_API_KEY: ${{ secrets.OPEN_AI_API }}

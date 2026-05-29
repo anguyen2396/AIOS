@@ -17,6 +17,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -26,12 +27,20 @@ BANGKOK = timezone(timedelta(hours=7))
 REPO_ROOT = Path(__file__).parent.parent
 TARGET_EMAIL = "austinngg996@gmail.com"
 
-YOUTUBE_CHANNELS = [
-    "Nate Herk",
-    "Tina Huang",
-    "Greg Isenberg",
-    "Matthew Berman",
-]
+# Verified channel IDs — update if a channel migrates
+YOUTUBE_CHANNELS = {
+    "Nate Herk":      "UC2ojq-nuP8ceeHqiroeKhBA",
+    "Tina Huang":     "UC2UXDak6o7rBm23k3Vv5dww",
+    "Greg Isenberg":  "UCPjNBjflYl0-HQtUvOx0Ibw",
+    "Matthew Berman": "UCawZsQWqfGSbCI5yjkdVkTA",
+}
+
+YT_RSS = "https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}"
+YT_NS  = {
+    "atom":  "http://www.w3.org/2005/Atom",
+    "yt":    "http://www.youtube.com/xml/schemas/2015",
+    "media": "http://search.yahoo.com/mrss/",
+}
 
 
 # ── Credentials ───────────────────────────────────────────────────────────────
@@ -252,6 +261,106 @@ def build_schedule_str(events):
     return "\\n".join(lines)
 
 
+# ── YouTube RSS + transcript helpers ─────────────────────────────────────────
+
+def _fetch_url(url: str, timeout: int = 15) -> bytes:
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return r.read()
+
+
+def _rss_recent_videos(channel_id: str, days_back: int = 7) -> list:
+    """Return list of dicts {video_id, title, url, date_str} for videos within days_back."""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days_back)
+    try:
+        xml_bytes = _fetch_url(YT_RSS.format(channel_id=channel_id))
+        root = ET.fromstring(xml_bytes)
+        videos = []
+        for entry in root.findall("atom:entry", YT_NS)[:5]:
+            pub_el = entry.find("atom:published", YT_NS)
+            if pub_el is None:
+                continue
+            pub_dt = datetime.fromisoformat(pub_el.text.replace("Z", "+00:00"))
+            if pub_dt < cutoff:
+                continue
+            vid_id = entry.find("yt:videoId", YT_NS)
+            title  = entry.find("atom:title", YT_NS)
+            link   = entry.find("atom:link", YT_NS)
+            videos.append({
+                "video_id": vid_id.text if vid_id is not None else "",
+                "title":    title.text  if title  is not None else "",
+                "url":      link.get("href", "") if link is not None else "",
+                "date_str": pub_dt.strftime("%b %d"),
+            })
+        return videos
+    except Exception as e:
+        print(f"  RSS error ({channel_id}): {e}", file=sys.stderr)
+        return []
+
+
+def _get_transcript(video_id: str) -> str:
+    """Return raw transcript text or empty string."""
+    try:
+        from youtube_transcript_api import YouTubeTranscriptApi
+        parts = YouTubeTranscriptApi.get_transcript(video_id, languages=["en", "en-US"])
+        text = " ".join(p["text"] for p in parts)
+        return text[:5000]  # cap for token budget
+    except Exception as e:
+        print(f"  Transcript unavailable ({video_id}): {e}", file=sys.stderr)
+        return ""
+
+
+def _summarize_transcript(openai_key: str, title: str, transcript: str) -> str:
+    """Use gpt-4o-mini to pull 2-3 key insights from the transcript."""
+    if not transcript:
+        return "Transcript not available — see video for details."
+    payload = json.dumps({
+        "model": "gpt-4o-mini",
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You extract key insights from YouTube video transcripts. "
+                    "Return 2-3 specific, actionable insights in ONE short paragraph (max 80 words). "
+                    "Focus on AI tools, business ideas, or tactics mentioned. No fluff."
+                ),
+            },
+            {"role": "user", "content": f"Title: {title}\n\nTranscript:\n{transcript}"},
+        ],
+        "max_tokens": 150,
+    }).encode()
+    try:
+        req = urllib.request.Request(
+            "https://api.openai.com/v1/chat/completions",
+            data=payload,
+            headers={"Authorization": f"Bearer {openai_key}", "Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req) as r:
+            return json.loads(r.read())["choices"][0]["message"]["content"].strip()
+    except Exception as e:
+        print(f"  Summarize error: {e}", file=sys.stderr)
+        return "Summary unavailable."
+
+
+def get_youtube_updates(openai_key: str, days_back: int = 7) -> str:
+    """Monitor RSS feeds, extract transcripts, summarize. Returns pipe-formatted lines."""
+    lines = []
+    for channel_name, channel_id in YOUTUBE_CHANNELS.items():
+        print(f"  YouTube: checking {channel_name}...")
+        videos = _rss_recent_videos(channel_id, days_back)
+        if not videos:
+            print(f"    No new videos in last {days_back} days.")
+            continue
+        video = videos[0]  # most recent only
+        transcript = _get_transcript(video["video_id"])
+        summary = _summarize_transcript(openai_key, video["title"], transcript)
+        lines.append(
+            f"{channel_name} | {video['title']} | {video['date_str']} | {video['url']} | {summary}"
+        )
+    return "\n".join(lines)
+
+
 # ── AI World section gatherers ────────────────────────────────────────────────
 
 def gather_ai_sections(openai_key: str, today_str: str) -> dict:
@@ -262,13 +371,8 @@ def gather_ai_sections(openai_key: str, today_str: str) -> dict:
         "Format: TITLE | SOURCE | SUMMARY. One per line. No markdown."
     ))
 
-    print("  Fetching YouTube updates...")
-    channels = ", ".join(YOUTUBE_CHANNELS)
-    youtube = openai_search(openai_key, (
-        f"Find the most recent YouTube videos (last 14 days) from: {channels}. "
-        "For each video: channel name, title, upload date, URL, and a one-sentence description of what the video covers. "
-        "Format: CHANNEL | TITLE | DATE | URL | DESCRIPTION. One per line. Skip channels with no recent videos."
-    ))
+    print("  Fetching YouTube updates via RSS + transcript...")
+    youtube = get_youtube_updates(openai_key)
 
     print("  Fetching Anthropic/Claude updates...")
     anthropic = openai_search(openai_key, (
