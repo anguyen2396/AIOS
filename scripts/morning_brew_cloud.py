@@ -419,6 +419,15 @@ def build_html(date_str, schedule_str, action_items, p1, p2, p3, needle, cal_not
     anthropic_html  = build_simple_list_html(ai["anthropic"], icon="◆", color="#cc785c")
     tools_html      = build_tools_html(ai["tools"])
 
+    # Pre-compute section rows — Python 3.11 forbids backslash escapes inside f-string {}
+    row_schedule   = section_row("Today's Schedule", "#f5c518", "📅", schedule_html)
+    row_items      = section_row("Open Action Items", "#4a90d9", "📋", items_html)
+    row_priorities = section_row("Top 3 Priorities", "#e05c2d", "🎯", priorities_html)
+    row_news       = section_row("AI News Headlines", "#e05c2d", "📰", news_html)
+    row_yt         = section_row("YouTube Updates", "#4a90d9", "▶", yt_html)
+    row_anthropic  = section_row("Claude / Anthropic", "#cc785c", "◆", anthropic_html)
+    row_tools      = section_row("AI Tool Drops", "#2d9e5c", "⚙", tools_html)
+
     return f"""<!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -434,9 +443,9 @@ def build_html(date_str, schedule_str, action_items, p1, p2, p3, needle, cal_not
       <p style="margin:0;color:#999999;font-size:14px;">{date_str}</p>
     </td></tr>
 
-    {section_row("Today's Schedule", "#f5c518", "\U0001f4c5", schedule_html)}
-    {section_row("Open Action Items", "#4a90d9", "\U0001f4cb", items_html)}
-    {section_row("Top 3 Priorities", "#e05c2d", "\U0001f3af", priorities_html)}
+    {row_schedule}
+    {row_items}
+    {row_priorities}
 
     <tr><td style="background:#ffffff;padding:20px 32px 24px;">
       <p style="margin:0 0 12px;font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#2d9e5c;border-bottom:2px solid #2d9e5c;padding-bottom:8px;display:inline-block;">⚡ &nbsp;One Thing to Move the Needle</p>
@@ -451,10 +460,10 @@ def build_html(date_str, schedule_str, action_items, p1, p2, p3, needle, cal_not
     </td></tr>
     <tr><td style="background:#ffffff;padding:0 32px;"><div style="height:1px;background:#eeeeee;"></div></td></tr>
 
-    {section_row("AI News Headlines", "#e05c2d", "\U0001f4f0", news_html)}
-    {section_row("YouTube Updates", "#4a90d9", "▶", yt_html)}
-    {section_row("Claude / Anthropic", "#cc785c", "◆", anthropic_html)}
-    {section_row("AI Tool Drops", "#2d9e5c", "⚙", tools_html)}
+    {row_news}
+    {row_yt}
+    {row_anthropic}
+    {row_tools}
 
     <tr><td style="background:#1a1a1a;border-radius:0 0 16px 16px;padding:20px 32px;text-align:center;">
       <p style="margin:0 0 6px;color:#777777;font-size:12px;">{cal_note}</p>
