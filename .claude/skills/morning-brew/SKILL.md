@@ -1,14 +1,14 @@
 ---
 name: morning-brew
-description: Use when someone says "morning brew", "run morning brew", "daily brief", "daily sync", "sync my notes", or "what's my day look like". Reads Obsidian action items, syncs them to Google Calendar, then outputs a prioritized daily plan.
+description: Use when someone says "morning brew", "run morning brew", "daily brief", "daily sync", "sync my notes", or "what's my day look like". Reads Obsidian action items, syncs them to Google Calendar, outputs a prioritized daily plan, AND pulls AI news/YouTube/Anthropic/tool updates — all in one email.
 argument-hint: [optional date, e.g. "tomorrow" or "2026-06-01"]
 ---
 
 ## What This Skill Does
 
-Two things in one run:
-1. **Sync** — reads unchecked `[ ]` action items from Obsidian Daily Notes, creates Google Calendar events for any not yet scheduled
-2. **Brief** — pulls today's calendar + open action items + Q2/Q3 goals and outputs a prioritized daily plan
+One email. Two halves:
+1. **Your Day** — reads Obsidian `[ ]` action items, syncs to Google Calendar, outputs prioritized daily plan
+2. **AI World** — pulls AI news headlines, YouTube channel updates, Claude/Anthropic announcements, and new AI tool drops
 
 ## Inputs
 
@@ -17,7 +17,9 @@ Two things in one run:
 - **Goals context:** `context/priorities.md`
 - **Date:** today unless argument specifies otherwise
 
-## Step-by-Step
+---
+
+## PART 1 — YOUR DAY
 
 ### Step 1 — Read Obsidian action items
 
@@ -51,76 +53,106 @@ Create the event. Log what was created.
 
 ### Step 4 — Fetch today's full calendar
 
-Pull all calendar events for today using Google Calendar MCP. Include the event title, start time, and end time.
+Pull all calendar events for today using Google Calendar MCP. Include event title, start time, and end time.
 
 ### Step 5 — Read priorities
 
 Read `context/priorities.md` for the current Q2/Q3 goals.
 
-### Step 6 — Generate the daily brief
+---
 
-Output the brief in this exact format:
+## PART 2 — AI WORLD
+
+### Step 6 — AI News Headlines
+
+Run 2 WebSearch queries:
+- `AI news today site:thedecoder.ai OR site:venturebeat.com OR site:techcrunch.com`
+- `artificial intelligence news [today's date]`
+
+Extract 5–7 headlines. For each: Title | Source | one-sentence summary. Skip anything older than 48h. Prioritize model releases, funding, policy, major launches. Flag anything relevant to AI consulting, BPO automation, or trading/fintech.
+
+### Step 7 — YouTube Channel Updates
+
+Run one WebSearch per channel:
+- `Nate Herk YouTube new video [current month year]`
+- `Tina Huang YouTube new video [current month year]`
+- `Greg Isenberg YouTube AI ideas [current month year]`
+- `Matthew Berman AI YouTube [current month year]`
+
+For each, extract the most recent 1–2 videos: Channel | Title | Date | URL (if available). YouTube lookback window: 14 days. No hallucinated URLs — omit if unsure.
+
+### Step 8 — Claude / Anthropic Updates
+
+Run WebSearch:
+- `Anthropic Claude update announcement [current month year]`
+
+Extract: model releases, API changes, pricing, new features. If nothing in last 7 days, write "No major updates this week."
+
+### Step 9 — AI Tool Drops
+
+Run WebSearch:
+- `new AI tools launched [today's date] ProductHunt trending`
+
+Extract 3–5 tools: Tool Name | one-line description | URL. Focus on tools relevant to consulting, automation, or trading.
 
 ---
 
-```
-# ☕ Morning Brew — [Today's Date, e.g. Wednesday May 28]
+## PART 3 — SEND
 
-## Today's Schedule
-[list events with times, or "Nothing scheduled — clear day."]
+### Step 10 — Generate the brief data
 
-## Open Action Items
-[list all unchecked Obsidian items, grouped by note date]
+Compile all data into variables:
+- `DATE` — e.g. "Wednesday May 28, 2026"
+- `SCHEDULE` — pipe-separated `time | title` lines, or "none"
+- `ITEMS` — `\n`-joined action item texts, or "none"
+- `P1`, `P2`, `P3` — top 3 priorities from `context/priorities.md`
+- `NEEDLE` — single most important action today (specific, not generic)
+- `CAL_NOTE` — e.g. "2 new events added. 1 item already scheduled."
+- `NEWS` — `Title | Source | Summary\n...`
+- `YOUTUBE` — `Channel | Title | Date | URL\n...`
+- `ANTHROPIC` — one item per line, or "No major updates this week."
+- `TOOLS` — `Tool | Description | URL\n...`
 
-## Top 3 Priorities
-1. [highest leverage item tied to Q2/Q3 goals]
-2. [second priority]
-3. [third priority]
+### Step 11 — Send the combined HTML email
 
-## One Thing to Move the Needle
-→ [single most important action today — be specific, not generic]
-
----
-🗓 [N] new events added to calendar. [M] items already scheduled.
-```
-
----
-
-### Step 7 — Send the HTML brief email
-
-After outputting the brief in chat, run `scripts/send_morning_brew.py` with the brief data:
+Run:
 
 ```
 python scripts/send_morning_brew.py \
-  --date "[e.g. Wednesday May 28]" \
-  --schedule "[time | title lines joined by \n, or 'none']" \
-  --items "[action item lines joined by \n, or 'none']" \
-  --p1 "[priority 1 text]" \
-  --p2 "[priority 2 text]" \
-  --p3 "[priority 3 text]" \
-  --needle "[the one needle-mover sentence]" \
-  --cal-note "[N new events added. M items already scheduled.]"
+  --date "Wednesday May 28" \
+  --schedule "5:00 PM – 5:30 PM | Draft outreach message\n5:30 PM – 6:00 PM | Build Rung 1 audit" \
+  --items "Draft first outreach message tailored to a warm contact\nBuild out Rung 1 audit template" \
+  --p1 "Draft first outreach message — advances Priority 3" \
+  --p2 "Trading session — protect the funded account" \
+  --p3 "Build Rung 1 audit template — completes funnel skeleton" \
+  --needle "Open rung-0-funnel.md, pick one warm contact, write Stage 1 message, send before 6 PM." \
+  --cal-note "0 new events added. 2 items already scheduled." \
+  --news "Title 1 | Source | Summary\nTitle 2 | Source | Summary" \
+  --youtube "Nate Herk | Video Title | May 28 | https://...\nTina Huang | Video Title | May 27 | https://..." \
+  --anthropic "Claude Opus 4.8 released — 4x better code reliability\nNew multiagent orchestration in Managed Agents" \
+  --tools "Phasr | Run 100+ parallel workflows without losing context | https://..."
 ```
 
-The script generates a styled HTML email (dark header, colored section labels, green needle-mover callout) and sends directly to austinngg996@gmail.com via Gmail API.
+Log: `Email sent — Message ID: [id]`
 
-Log one line after sending: `Email sent — Message ID: [id]`
-
-If the script fails, note the error but do not block the rest of the skill — chat output is the fallback.
+If script fails, print digest in chat as fallback.
 
 ---
 
 ## Guardrails
 
-- **No duplicate events.** Always check calendar before creating. If unsure, skip and mention it.
-- **Don't create events in the past.** If an item's inferred date is already past, flag it in the brief instead.
-- **Top 3 must tie to goals.** Never pick "busywork" as a top priority. Pull from `context/priorities.md` to anchor choices.
-- **One needle-mover must be specific.** Not "work on the funnel" — "draft the Stage 1 outreach message for [specific contact]".
-- **If Obsidian vault is empty or unreadable:** skip sync, proceed to brief with calendar + goals only. Note the skip.
+- **No duplicate calendar events.** Always check before creating.
+- **Don't create events in the past.** Flag those in the brief instead.
+- **Top 3 must tie to goals.** Pull from `context/priorities.md`.
+- **Needle-mover must be specific.** Not "work on funnel" — name the contact, the file, the step.
+- **No hallucinated URLs.** Omit rather than guess.
+- **Recency first.** Skip AI news older than 48h. YouTube lookback 14 days. Tools: this week only.
+- **If Obsidian vault is empty:** skip sync, proceed with calendar + goals + AI digest only.
 
 ## Notes
 
-- Timezone for all calendar operations: **Asia/Bangkok (UTC+7)**
+- Timezone: **Asia/Bangkok (UTC+7)**
 - Vault path: `C:\Users\Administrator\Desktop\austin-brain\Daily Notes\`
-- If argument is provided (e.g. `/morning-brew tomorrow`), shift the target date accordingly
-- After running, suggest appending a `## [Date]` section to Daily Notes if today's section is missing
+- Send to: austinngg996@gmail.com
+- Script: `scripts/send_morning_brew.py`
+- If argument provided (e.g. `/morning-brew tomorrow`), shift target date accordingly
